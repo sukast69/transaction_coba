@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataBank;
 use App\Models\Pengguna;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -26,6 +27,12 @@ class TransactionController extends Controller
 
     public function insert()
     {
+
+        // DB::transaction(function () {
+        //     DB::update('update users set votes = 1');
+
+        //     DB::delete('delete from posts');
+        // });
         // Request()->validate([
         //     'nik' => 'required|unique:pengguna,nik|min:16',
         //     'nama_lengkap' => 'required',
@@ -33,6 +40,8 @@ class TransactionController extends Controller
         //     'nama_bank' => 'required',
 
         // ]);
+
+        DB::beginTransaction();
 
         $dataPengguna = [
             'nik' => Request()->nik,
@@ -49,6 +58,9 @@ class TransactionController extends Controller
         ];
 
         $this->DataBank->addDataBank($dataBank);
+
+        // DB::rollBack();
+        DB::commit();
 
         return redirect()->route('insert')->with('pesan', 'Data berhasil ditambahkan!!');
 
