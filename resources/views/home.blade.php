@@ -89,25 +89,7 @@
                                     </tbody>
 
                                 </table>
-                                {{-- <table id="basic-datatables" class="display table  table-hover">
-                                    <thead>
-                                        <tr>
 
-                                            <th scope="col">Nama Bank</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($dataBank as $db)
-                                            <tr>
-                                                <td>{{ $db->nama_bank }}</td>
-                                            </tr>
-
-                                        @endforeach
-
-                                    </tbody>
-
-                                </table> --}}
                             </div>
                         </div>
                     </div>
