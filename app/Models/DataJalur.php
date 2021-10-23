@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class DataBank extends Model
+class DataJalur extends Model
 {
     protected $table = 'jalur_pendaftaran';
     protected $fillable = ['nama_jalur'];
@@ -24,13 +24,13 @@ class DataBank extends Model
     {
         DB::table('jalur_pendaftaran')->insert($dataJalur);
 
-        // return $this->hasOne(DataBank::class);
+        // return $this->hasOne(DataJalur::class);
 
     }
 
     public function getCasts()
     {
-        
+
         return DB::table('jalur_pendaftaran')->orderBy('id_jalur', 'desc')->first();
     }
 }

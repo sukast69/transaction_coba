@@ -48,11 +48,11 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <select class="form-control" name="nama_jalur" id="nama_jalur">
-                                        <option value="...."></option>
-                                        <option value="Mandiri">Mandiri</option>
-                                        <option value="BPJS">BPJS</option>
+                                        <option value="1">Mandiri</option>
+                                        <option value="2">BPJS</option>
                                     </select>
 
 
@@ -70,55 +70,65 @@
                                     <button class="btn btn-primary btn-round btn-sm float-right ">Simpan</button>
                                 </div>
                             </form>
+
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="basic-datatables" class="display table  table-hover">
+                                <table id="basic-datatables" class="display table  table-striped">
                                     <thead>
                                         <tr>
+                                            <th scope="col">Nomer Antrian</th>
                                             <th scope="col">NIK</th>
                                             <th scope="col">Nama Lengkap</th>
                                             <th scope="col">Alamat</th>
+                                            <th scope="col">Jalur</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
                                         @foreach ($pengguna as $p)
+
                                             <tr>
+                                                <td>{{ $p->id_pengguna }}</td>
                                                 <td>{{ $p->nik }}</td>
                                                 <td>{{ $p->nama_lengkap }}</td>
                                                 <td>{{ $p->alamat }}</td>
+
+                                                <?php if($p->id_jalur==1){ ?>
+                                                <td> Mandiri</td>
+                                                <?php }else{ ?>
+                                                <td>BPJS</td>
+                                                <?php } ?>
                                             </tr>
                                         @endforeach
-
-
                                     </tbody>
-
                                 </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                {{-- <div class="col-md-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
 
-                                <table id="basic-datatables" class="display table  table-hover">
+                                <table id="basic-datatables" class="display table  table-striped">
                                     <thead>
                                         <tr>
-
                                             <th scope="col">Nama Jalur</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($dataBank as $db)
+                                        @foreach ($DataJalur as $db)
                                             <tr>
                                                 <td>{{ $db->nama_jalur }}</td>
                                             </tr>
@@ -131,8 +141,33 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
+            {{-- <form action="/" method="POST" enctype="multipart/form-data">
+                @csrf
+
+
+                <div class="form-group">
+                    <select class="form-control" name="nama_jalur" id="nama_jalur">
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="BPJS">BPJS</option>
+                    </select>
+
+
+                    <input type="text" value="{{ old('nama_jalur') }}" name="nama_jalur"
+                        class="form-control input-pill @error('nama_jalur') is-invalid @enderror" id="nama_jalur"
+                        placeholder="Nama Jalur">
+                    <div class="text-danger">
+                        @error('nama_jalur')
+                            {{ $message }}
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-round btn-sm float-right ">Simpan</button>
+                </div>
+            </form> --}}
         </div>
     </div>
 

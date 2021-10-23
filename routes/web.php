@@ -21,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [TransactionController::class, 'index']);
 Route::get('/', [TransactionController::class, 'index']);
 Route::post('/', [TransactionController::class, 'insert'])->name('insert');
+// Route::post('/', [TransactionController::class, 'jalur'])->name('jalur');

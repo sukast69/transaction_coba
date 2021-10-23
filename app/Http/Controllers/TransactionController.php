@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataBank;
+use App\Models\DataJalur;
 use App\Models\Pengguna;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ class TransactionController extends Controller
 {
     public function __construct()
     {
-        $this->DataBank = new DataBank();
+        $this->DataJalur = new DataJalur();
         $this->Pengguna = new Pengguna();
     }
 
@@ -19,7 +19,7 @@ class TransactionController extends Controller
     {
         $data = [
             'pengguna' => $this->Pengguna->alldataPengguna(),
-            'dataBank' => $this->DataBank->alldataJalur(),
+            'DataJalur' => $this->DataJalur->alldataJalur(),
         ];
 
         return view('home', $data);
@@ -29,15 +29,10 @@ class TransactionController extends Controller
     {
 
         DB::beginTransaction();
-        $dataBank = [
-            'nama_jalur' => Request()->nama_jalur,
-        ];
-
-        $this->DataBank->addDataJalur($dataBank);
 
         $dataPengguna = [
 
-            'id_jalur' => '3',
+            'id_jalur' => Request()->nama_jalur,
             'nik' => Request()->nik,
             'nama_lengkap' => Request()->nama_lengkap,
             'alamat' => Request()->alamat,
@@ -52,4 +47,15 @@ class TransactionController extends Controller
         return redirect()->route('insert')->with('pesan', 'Data berhasil ditambahkan!!');
 
     }
+
+    // public function jalur()
+    // {
+    //     $DataJalur = [
+
+    //         'nama_jalur' => Request()->nama_jalur,
+    //     ];
+
+    //     $this->DataJalur->addDataJalur($DataJalur);
+    //     return redirect()->route('jalur')->with('pesan', 'Data berhasil ditambahkan!!');
+    // }
 }
