@@ -19,7 +19,7 @@ class TransactionController extends Controller
     {
         $data = [
             'pengguna' => $this->Pengguna->alldataPengguna(),
-            'dataBank' => $this->DataBank->alldataBank(),
+            'dataBank' => $this->DataBank->alldataJalur(),
         ];
 
         return view('home', $data);
@@ -29,24 +29,24 @@ class TransactionController extends Controller
     {
 
         DB::beginTransaction();
+        $dataBank = [
+            'nama_jalur' => Request()->nama_jalur,
+        ];
+
+        $this->DataBank->addDataJalur($dataBank);
 
         $dataPengguna = [
+
+            'id_jalur' => '3',
             'nik' => Request()->nik,
             'nama_lengkap' => Request()->nama_lengkap,
-            'ttl' => Request()->ttl,
+            'alamat' => Request()->alamat,
+
+            // 'id_jalur' => $this->Pengguna->getCasts()->id_jalur,
         ];
 
         $this->Pengguna->addDataPengguna($dataPengguna);
 
-        $dataBank = [
-
-            'id_pengguna' => $this->Pengguna->getLast()->id_pengguna,
-            'nama_bank' => Request()->nama_bank,
-        ];
-
-        $this->DataBank->addDataBank($dataBank);
-
-        // DB::rollBack();
         DB::commit();
 
         return redirect()->route('insert')->with('pesan', 'Data berhasil ditambahkan!!');

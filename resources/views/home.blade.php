@@ -34,27 +34,37 @@
                                             {{ $message }}
                                         @enderror
                                     </div>
+
+
                                 </div>
                                 <div class="form-group">
 
-                                    <input type="date" value="{{ old('ttl') }}" name="ttl"
-                                        class="form-control input-pill @error('ttl') is-invalid @enderror" id="ttl"
-                                        placeholder="Tanggal Lahir">
+                                    <input type="text" value="{{ old('alamat') }}" name="alamat"
+                                        class="form-control input-pill @error('alamat') is-invalid @enderror" id="alamat"
+                                        placeholder="Alamat">
                                     <div class="text-danger">
-                                        @error('ttl')
+                                        @error('alamat')
                                             {{ $message }}
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" value="{{ old('nama_bank') }}" name="nama_bank"
-                                        class="form-control input-pill @error('nama_bank') is-invalid @enderror"
-                                        id="namaBank" placeholder="Nama Bank">
+                                    <select class="form-control" name="nama_jalur" id="nama_jalur">
+                                        <option value="...."></option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="BPJS">BPJS</option>
+                                    </select>
+
+
+                                    {{-- <input type="text" value="{{ old('nama_jalur') }}" name="nama_jalur"
+                                        class="form-control input-pill @error('nama_jalur') is-invalid @enderror"
+                                        id="nama_jalur" placeholder="Nama Jalur">
                                     <div class="text-danger">
-                                        @error('nama_bank')
+                                        @error('nama_jalur')
                                             {{ $message }}
                                         @enderror
-                                    </div>
+                                    </div> --}}
+
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-round btn-sm float-right ">Simpan</button>
@@ -72,7 +82,7 @@
                                         <tr>
                                             <th scope="col">NIK</th>
                                             <th scope="col">Nama Lengkap</th>
-                                            <th scope="col">TTL</th>
+                                            <th scope="col">Alamat</th>
 
                                         </tr>
                                     </thead>
@@ -81,7 +91,7 @@
                                             <tr>
                                                 <td>{{ $p->nik }}</td>
                                                 <td>{{ $p->nama_lengkap }}</td>
-                                                <td>{{ $p->ttl }}</td>
+                                                <td>{{ $p->alamat }}</td>
                                             </tr>
                                         @endforeach
 
@@ -103,14 +113,14 @@
                                     <thead>
                                         <tr>
 
-                                            <th scope="col">Nama Bank</th>
+                                            <th scope="col">Nama Jalur</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach ($dataBank as $db)
                                             <tr>
-                                                <td>{{ $db->nama_bank }}</td>
+                                                <td>{{ $db->nama_jalur }}</td>
                                             </tr>
 
                                         @endforeach

@@ -10,7 +10,7 @@ class Pengguna extends Model
 {
 
     protected $table = 'pengguna';
-    protected $fillable = ['nik', 'nama_lengkap', 'ttl'];
+    protected $fillable = ['nik', 'nama_lengkap', 'alamat'];
     protected $key = 'id_pengguna';
     public $timestamps = true;
     use HasFactory;
@@ -25,11 +25,6 @@ class Pengguna extends Model
     {
         DB::table('pengguna')->insert($dataPengguna);
 
-    }
-
-    public function getLast()
-    {
-        return DB::table('pengguna')->orderBy('id_pengguna', 'desc')->first();
     }
 
 }

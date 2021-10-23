@@ -8,29 +8,29 @@ use Illuminate\Support\Facades\DB;
 
 class DataBank extends Model
 {
-    protected $table = 'data_bank';
-    protected $fillable = ['nama_bank'];
-    protected $key = 'id_bank';
+    protected $table = 'jalur_pendaftaran';
+    protected $fillable = ['nama_jalur'];
+    protected $key = 'id_jalur';
     public $timestamps = true;
+    use HasFactory;
 
-    public function alldataBank()
+    public function alldataJalur()
     {
-        return DB::table('data_bank')->get();
+        return DB::table('jalur_pendaftaran')->get();
 
     }
 
-    public function addDataBank($dataBank)
+    public function addDataJalur($dataJalur)
     {
-        DB::table('data_bank')->insert($dataBank);
+        DB::table('jalur_pendaftaran')->insert($dataJalur);
 
         // return $this->hasOne(DataBank::class);
 
     }
 
-    // public function kePengguna()
-    // {
-    //     $this->hasOne(Pengguna::class, );
-    // }
-
-    use HasFactory;
+    public function getCasts()
+    {
+        
+        return DB::table('jalur_pendaftaran')->orderBy('id_jalur', 'desc')->first();
+    }
 }
