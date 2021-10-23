@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('/home');
 // });
 
-Route::get('/home', [TransactionController::class, 'index']);
+// Route::get('/', [TransactionController::class, 'index']);
 Route::get('/', [TransactionController::class, 'index']);
+Route::get('/edit/{id_pengguna}', [TransactionController::class, 'edit']);
+Route::post('/update/{id_pengguna}', [TransactionController::class, 'update'])->name('update');
+Route::get('/delete/{id_pengguna}', [TransactionController::class, 'deleteData'])->name('deleteData');
 Route::post('/', [TransactionController::class, 'insert'])->name('insert');
+
 // Route::post('/', [TransactionController::class, 'jalur'])->name('jalur');

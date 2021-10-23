@@ -48,14 +48,42 @@ class TransactionController extends Controller
 
     }
 
-    // public function jalur()
-    // {
-    //     $DataJalur = [
+    public function edit($id_pengguna)
+    {
+        if (!$this->Pengguna->detailDataPengguna($id_pengguna)) {
+            abort(404);
+        }
 
-    //         'nama_jalur' => Request()->nama_jalur,
-    //     ];
+        $data = [
+            'pengguna' => $this->Pengguna->detailDataPengguna($id_pengguna),
+        ];
+        return view('edit', $data);
+    }
 
-    //     $this->DataJalur->addDataJalur($DataJalur);
-    //     return redirect()->route('jalur')->with('pesan', 'Data berhasil ditambahkan!!');
-    // }
+    public function update($id_pengguna)
+    {
+        DB::beginTransaction();
+
+        $dataPengguna = [
+
+            'id_jalur' => Request()->nama_jalur,
+            'nik' => Request()->nik,
+            'nama_lengkap' => Request()->nama_lengkap,
+            'alamat' => Request()->alamat,
+
+            // 'id_jalur' => $this->Pengguna->getCasts()->id_jalur,
+        ];
+
+        $this->Pengguna->editData($id_pengguna, $dataPengguna);
+
+        DB::commit();
+
+        return redirect()->route('insert')->with('pesan', 'Data berhasil diubah!!');
+    }
+
+    public function deleteData($id_pengguna)
+    {
+        $this->Pengguna->hapusData($id_pengguna);
+        return redirect()->route('insert')->with('pesan', 'Data berhasil dihapus!!');
+    }
 }

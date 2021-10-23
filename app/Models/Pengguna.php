@@ -27,4 +27,18 @@ class Pengguna extends Model
 
     }
 
+    public function detailDataPengguna($id_pengguna)
+    {
+        return DB::table('pengguna')->where('id_pengguna', $id_pengguna)->first();
+    }
+
+    public function editData($id_pengguna, $data)
+    {
+        DB::table('pengguna')->where('id_pengguna', $id_pengguna)->update($data);
+    }
+
+    public function hapusData($id_pengguna)
+    {
+        DB::table('pengguna')->where('id_pengguna', $id_pengguna)->delete();
+    }
 }
