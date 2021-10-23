@@ -32,6 +32,7 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/atlantis.min.css') }}">
+
     {{-- <link rel="stylesheet" href="{{ asset('/css/css/style.css') }}"> --}}
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
